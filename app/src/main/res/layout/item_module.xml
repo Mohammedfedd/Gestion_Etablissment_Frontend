@@ -2,10 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     android:radius="8dp"
     android:layout_gravity="center"
-    android:elevation="4dp">
+    android:elevation="4dp"
+    app:cardCornerRadius="80sp"
+    app:cardElevation="20sp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,6 +42,7 @@
             android:id="@+id/btn_update_module"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#4CAF50"
             android:text="Update" />
 
 

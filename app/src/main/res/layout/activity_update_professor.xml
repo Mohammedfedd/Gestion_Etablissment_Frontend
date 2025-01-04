@@ -1,21 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Return Button with an arrow icon -->
     <ImageButton
         android:id="@+id/btn_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back"
-    android:background="@android:color/transparent"
-    android:contentDescription="Go Back"
-    android:layout_gravity="start"
-    android:padding="8dp" />
-
-    <!-- Other form fields for adding staff -->
+        android:contentDescription="Return Button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="16dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"/>
+    <!-- EditText for First Name -->
     <EditText
         android:id="@+id/editTextFirstName"
         android:layout_width="match_parent"
@@ -28,16 +29,16 @@
         android:layout_height="wrap_content"
         android:hint="Last Name" />
 
-    <EditText
-        android:id="@+id/editTextOccupation"
+    <!-- Spinner for Module -->
+    <Spinner
+        android:id="@+id/spinner_module"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Occupation" />
+        android:layout_height="wrap_content" />
 
+    <!-- Save Button -->
     <Button
-        android:id="@+id/btnAddStaff"
+        android:id="@+id/btn_save_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Staff" />
-
+        android:text="Save" />
 </LinearLayout>

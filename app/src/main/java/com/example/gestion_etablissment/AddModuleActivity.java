@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -27,10 +29,16 @@ public class AddModuleActivity extends AppCompatActivity {
         moduleNameEditText = findViewById(R.id.editTextModuleName);
         addButton = findViewById(R.id.btnSaveModule);
 
+        ImageButton btnReturn = findViewById(R.id.btnReturn);
+        btnReturn.setOnClickListener(v -> finish());
+
         addButton.setOnClickListener(v -> {
             String moduleName = moduleNameEditText.getText().toString();
-            addModule(moduleName);
-            finish();
+            if (!moduleName.isEmpty()) {
+                addModule(moduleName);
+            } else {
+                Toast.makeText(AddModuleActivity.this, "Module name is required", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -41,10 +49,11 @@ public class AddModuleActivity extends AppCompatActivity {
                 Request.Method.POST,
                 url,
                 response -> {
-
+                    Toast.makeText(AddModuleActivity.this, "Module added successfully", Toast.LENGTH_SHORT).show();
+                    finish();
                 },
                 error -> {
-
+                    Toast.makeText(AddModuleActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }) {
             @Override
             public Map<String, String> getParams() {

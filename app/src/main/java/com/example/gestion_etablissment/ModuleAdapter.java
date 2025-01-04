@@ -69,7 +69,7 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleView
         private String name;
         private int id;
 
-        public Module(String name) {
+        public Module(long moduleId, String name) {
             this.name = name;
         }
 

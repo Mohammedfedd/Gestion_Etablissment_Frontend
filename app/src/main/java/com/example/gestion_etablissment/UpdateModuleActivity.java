@@ -3,6 +3,7 @@ package com.example.gestion_etablissment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +24,13 @@ public class UpdateModuleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_module);
 
         editTextModuleName = findViewById(R.id.edit_text_module_name);
+        ImageButton btnReturn = findViewById(R.id.btn_return); // Initialize return button
 
         moduleId = getIntent().getIntExtra("moduleId", -1);
         String moduleName = getIntent().getStringExtra("moduleName");
         editTextModuleName.setText(moduleName);
+
+        btnReturn.setOnClickListener(v -> finish()); // Handle return button click
     }
 
     public void updateModule(View view) {

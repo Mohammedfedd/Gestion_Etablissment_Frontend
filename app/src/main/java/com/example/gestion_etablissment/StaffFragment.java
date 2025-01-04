@@ -6,12 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,18 +42,48 @@ public class StaffFragment extends Fragment {
         adapter = new StaffAdapter(staffList);
         recyclerView.setAdapter(adapter);
 
-        fetchStaffData();
-
         Button btnAddStaff = view.findViewById(R.id.btn_add_staff);
         btnAddStaff.setOnClickListener(v -> {
-        Intent intent = new Intent(getActivity(), AddStaffActivity.class);
-        startActivity(intent);
-    });
+            Intent intent = new Intent(getActivity(), AddStaffActivity.class);
+            startActivity(intent);
+        });
 
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        fetchStaffData();
+    }
+
     private void fetchStaffData() {
-        // Implement data fetching logic for staff
+        String url = "http://10.0.2.2:8080/api/personnel";
+
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                response -> {
+                    staffList.clear();
+                    try {
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject staffJson = response.getJSONObject(i);
+                            Long staffId = staffJson.getLong("id");
+                            String firstName = staffJson.getString("prenom");
+                            String lastName = staffJson.getString("nom");
+                            String occupation = staffJson.getString("occupation");
+
+
+                            StaffAdapter.Staff staff = new StaffAdapter.Staff(staffId, firstName, lastName, occupation);
+                            staffList.add(staff);
+                        }
+                        adapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        Toast.makeText(getContext(), "Error parsing staff data", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> Toast.makeText(getContext(), "Failed to fetch staff data", Toast.LENGTH_SHORT).show()
+        );
+
+        queue.add(request);
     }
 }

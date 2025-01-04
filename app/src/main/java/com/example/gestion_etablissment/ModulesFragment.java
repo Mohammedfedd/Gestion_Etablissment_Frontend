@@ -93,7 +93,7 @@ public class ModulesFragment extends Fragment {
                                 String moduleName = moduleObject.getString("name");
                                 int moduleId = moduleObject.getInt("id");
 
-                                ModuleAdapter.Module module = new ModuleAdapter.Module(moduleName);
+                                ModuleAdapter.Module module = new ModuleAdapter.Module(moduleId, moduleName);
                                 module.setId(moduleId); // Set the ID
                                 moduleList.add(module);
                             } catch (JSONException e) {
