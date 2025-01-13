@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gestion_Etablissment"
         tools:targetApi="31">
+
+        <!-- Declare UpdateStudentActivity here -->
+        <activity
+            android:name=".UpdateStudentActivity"
+            android:exported="false" />  <!-- Make sure the 'exported' attribute is set to true/false based on your needs -->
+
         <activity
             android:name=".UpdateProfessorActivity"
             android:exported="false" />
@@ -40,7 +46,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

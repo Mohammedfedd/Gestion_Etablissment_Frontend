@@ -10,23 +10,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back"
-    android:background="@android:color/transparent"
-    android:contentDescription="Go Back"
-    android:layout_gravity="start"
-    android:padding="8dp" />
+        android:background="@android:color/transparent"
+        android:contentDescription="Retour"
+        android:layout_gravity="start"
+        android:padding="8dp" />
 
     <!-- Other form fields for adding staff -->
     <EditText
         android:id="@+id/editTextFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="First Name" />
+        android:hint="Prénom" />
 
     <EditText
         android:id="@+id/editTextLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Last Name" />
+        android:hint="Nom" />
 
     <EditText
         android:id="@+id/editTextOccupation"
@@ -38,6 +38,6 @@
         android:id="@+id/btnAddStaff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Staff" />
+        android:text="Ajouter le Personnel" />
 
 </LinearLayout>

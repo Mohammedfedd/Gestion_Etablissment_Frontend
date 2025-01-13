@@ -91,10 +91,11 @@ public class ModulesFragment extends Fragment {
                             try {
                                 JSONObject moduleObject = response.getJSONObject(i);
                                 String moduleName = moduleObject.getString("name");
+                                String moduleNiveau = moduleObject.getString("niveau"); // Fetch niveau
                                 int moduleId = moduleObject.getInt("id");
 
-                                ModuleAdapter.Module module = new ModuleAdapter.Module(moduleId, moduleName);
-                                module.setId(moduleId); // Set the ID
+                                // Create module with id, name, and niveau
+                                ModuleAdapter.Module module = new ModuleAdapter.Module(moduleId, moduleName, moduleNiveau);
                                 moduleList.add(module);
                             } catch (JSONException e) {
                                 e.printStackTrace();

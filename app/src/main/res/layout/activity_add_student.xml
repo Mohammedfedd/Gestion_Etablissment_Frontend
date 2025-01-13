@@ -1,32 +1,56 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
+    <ImageButton
+        android:id="@+id/btn_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Bouton Retour"
+        android:layout_margin="16dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless" />
+
+    <!-- EditText for First Name -->
     <EditText
         android:id="@+id/editTextFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="First Name" />
+        android:hint="Prénom" />
 
+    <!-- EditText for Last Name -->
     <EditText
         android:id="@+id/editTextLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Last Name" />
+        android:hint="Nom" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerModules"
+    <!-- EditText for Niveau -->
+    <EditText
+        android:id="@+id/editTextNiveau"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:hint="Niveau" />
 
+    <!-- Dynamic Modules Section -->
+    <LinearLayout
+        android:id="@+id/modulesContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="8dp">
+        <!-- Modules will be added here dynamically -->
+    </LinearLayout>
+
+    <!-- Save Button -->
     <Button
         android:id="@+id/btnSaveStudent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Add Student" />
+        android:text="Enregistrer" />
+
 </LinearLayout>

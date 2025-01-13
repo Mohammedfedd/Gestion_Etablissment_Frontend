@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back"
-        android:contentDescription="Return"
+        android:contentDescription="Retour"
         android:background="?android:attr/selectableItemBackground"
         android:layout_gravity="start"/>
 
@@ -18,13 +17,20 @@
         android:id="@+id/edit_text_module_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Module Name"
+        android:hint="Nom du Module"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/edit_text_module_niveau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Niveau du Module"
         android:textSize="18sp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update Module"
+        android:text="Mettre à Jour le Module"
         android:onClick="updateModule"/>
 
 </LinearLayout>

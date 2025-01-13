@@ -8,17 +8,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back"
-        android:contentDescription="Return Button"
+        android:contentDescription="Bouton Retour"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="16dp"
-        android:background="?android:attr/selectableItemBackgroundBorderless"/>
+        android:background="?android:attr/selectableItemBackgroundBorderless" />
 
     <EditText
         android:id="@+id/editTextFirstName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="First Name"
+        android:hint="Prénom"
         app:layout_constraintTop_toBottomOf="@id/btn_return"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         android:id="@+id/editTextLastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Last Name"
+        android:hint="Nom"
         app:layout_constraintTop_toBottomOf="@id/editTextFirstName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
         android:id="@+id/btnSaveProfessor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Professor"
+        android:text="Enregistrer le Professeur"
         app:layout_constraintTop_toBottomOf="@id/spinnerModules"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

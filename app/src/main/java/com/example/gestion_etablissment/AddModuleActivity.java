@@ -1,5 +1,6 @@
 package com.example.gestion_etablissment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,15 +19,17 @@ import java.util.Map;
 
 public class AddModuleActivity extends AppCompatActivity {
 
-    private EditText moduleNameEditText;
+    private EditText moduleNameEditText, moduleNiveauEditText; // Added for niveau
     private Button addButton;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_module);
 
         moduleNameEditText = findViewById(R.id.editTextModuleName);
+        moduleNiveauEditText = findViewById(R.id.editTextModuleNiveau); // Initialize niveau field
         addButton = findViewById(R.id.btnSaveModule);
 
         ImageButton btnReturn = findViewById(R.id.btnReturn);
@@ -34,15 +37,16 @@ public class AddModuleActivity extends AppCompatActivity {
 
         addButton.setOnClickListener(v -> {
             String moduleName = moduleNameEditText.getText().toString();
-            if (!moduleName.isEmpty()) {
-                addModule(moduleName);
+            String moduleNiveau = moduleNiveauEditText.getText().toString(); // Get niveau input
+            if (!moduleName.isEmpty() && !moduleNiveau.isEmpty()) {
+                addModule(moduleName, moduleNiveau); // Pass both moduleName and niveau
             } else {
-                Toast.makeText(AddModuleActivity.this, "Module name is required", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddModuleActivity.this, "Module name and niveau are required", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void addModule(String moduleName) {
+    private void addModule(String moduleName, String moduleNiveau) {
         String url = "http://10.0.2.2:8080/api/modules";
 
         StringRequest stringRequest = new StringRequest(
@@ -59,6 +63,7 @@ public class AddModuleActivity extends AppCompatActivity {
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("name", moduleName);
+                params.put("niveau", moduleNiveau); // Add the niveau parameter
                 return params;
             }
         };
@@ -66,3 +71,4 @@ public class AddModuleActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(stringRequest);
     }
 }
+

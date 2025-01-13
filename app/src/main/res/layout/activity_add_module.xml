@@ -1,5 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,17 +8,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back"
-
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    android:layout_margin="16dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="16dp" />
 
     <EditText
         android:id="@+id/editTextModuleName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Module Name"
+        android:hint="Nom du Module"
         app:layout_constraintTop_toBottomOf="@id/btnReturn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
+    <!-- Add TextField for "niveau" -->
+    <EditText
+        android:id="@+id/editTextModuleNiveau"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Niveau"
+        app:layout_constraintTop_toBottomOf="@id/editTextModuleName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
@@ -28,8 +37,8 @@
         android:id="@+id/btnSaveModule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Module"
-        app:layout_constraintTop_toBottomOf="@id/editTextModuleName"
+        android:text="Enregistrer le Module"
+        app:layout_constraintTop_toBottomOf="@id/editTextModuleNiveau"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />

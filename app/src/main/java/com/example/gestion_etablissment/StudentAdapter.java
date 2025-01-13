@@ -3,94 +3,97 @@ package com.example.gestion_etablissment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.AdapterView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-import java.util.Map;
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
+public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHolder> {
 
-    private List<Student> students;
-    private List<String> modules;
+    private List<String> studentFirstNames;
+    private List<String> studentLastNames;
+    private List<String> studentNiveaux;
+    private OnDeleteClickListener onDeleteClickListener;
+    private OnUpdateClickListener onUpdateClickListener;
 
-    public StudentAdapter(List<Student> students, List<String> modules) {
-        this.students = students;
-        this.modules = modules;
+    public StudentAdapter(List<String> studentFirstNames, List<String> studentLastNames, List<String> studentNiveaux,
+                          OnDeleteClickListener onDeleteClickListener, OnUpdateClickListener onUpdateClickListener) {
+        this.studentFirstNames = studentFirstNames;
+        this.studentLastNames = studentLastNames;
+        this.studentNiveaux = studentNiveaux;
+        this.onDeleteClickListener = onDeleteClickListener;
+        this.onUpdateClickListener = onUpdateClickListener;
     }
 
+    @NonNull
     @Override
-    public StudentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_student, parent, false);
-        return new StudentViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(StudentViewHolder holder, int position) {
-        Student student = students.get(position);
-        holder.nameTextView.setText(student.getName());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String firstName = studentFirstNames.get(position);
+        String lastName = studentLastNames.get(position);
+        String studentNiveau = studentNiveaux.get(position);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.itemView.getContext(),
-                android.R.layout.simple_spinner_item, modules);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        holder.moduleSpinner.setAdapter(adapter);
+        holder.textFirstName.setText(firstName);
+        holder.textLastName.setText(lastName);
+        holder.textStudentNiveau.setText("Niveau: " + studentNiveau);
 
+        // Set the delete button functionality
+        holder.deleteButton.setOnClickListener(v -> onDeleteClickListener.onDeleteClick(position));
 
-        holder.moduleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View view, int pos, long id) {
-                String selectedModule = modules.get(pos);
-                String grade = student.getGrades().get(selectedModule);
-                holder.gradeTextView.setText(grade);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-
-                holder.gradeTextView.setText("No grade available");
-            }
-        });
+        // Set the update button functionality
+        holder.updateButton.setOnClickListener(v -> onUpdateClickListener.onUpdateClick(position));
     }
 
     @Override
     public int getItemCount() {
-        return students.size();
+        return studentFirstNames.size();
     }
 
-    public static class StudentViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView;
-        Spinner moduleSpinner;
-        TextView gradeTextView;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView textFirstName;
+        TextView textLastName;
+        TextView textStudentNiveau;
+        Button deleteButton;
+        Button updateButton;
 
-        public StudentViewHolder(View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.text_student_name);
-            moduleSpinner = itemView.findViewById(R.id.spinner_module);
-            gradeTextView = itemView.findViewById(R.id.text_student_grade);
+            textFirstName = itemView.findViewById(R.id.textFirstName);
+            textLastName = itemView.findViewById(R.id.textLastName);
+            textStudentNiveau = itemView.findViewById(R.id.textStudentNiveau);
+            deleteButton = itemView.findViewById(R.id.btnDeleteStudent);
+            updateButton = itemView.findViewById(R.id.btnUpdateStudent);
         }
     }
 
+    public interface OnDeleteClickListener {
+        void onDeleteClick(int position);
+    }
 
-    public static class Student {
-        private String name;
-        private Map<String, String> grades;
+    public interface OnUpdateClickListener {
+        void onUpdateClick(int position);
+    }
 
-        public Student(String name, Map<String, String> grades) {
-            this.name = name;
-            this.grades = grades;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public Map<String, String> getGrades() {
-            return grades;
-        }
+    /**
+     * Updates the data of the adapter and refreshes the view.
+     *
+     * @param firstNames List of updated first names.
+     * @param lastNames  List of updated last names.
+     * @param niveaux    List of updated levels.
+     */
+    public void updateData(List<String> firstNames, List<String> lastNames, List<String> niveaux) {
+        this.studentFirstNames = firstNames;
+        this.studentLastNames = lastNames;
+        this.studentNiveaux = niveaux;
+        notifyDataSetChanged();
     }
 }

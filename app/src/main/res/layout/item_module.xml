@@ -27,12 +27,21 @@
             android:textColor="@android:color/black"
             android:ellipsize="end"
             android:maxLines="1" />
+        <TextView
+            android:id="@+id/text_module_niveau"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Niveau"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="8dp" />
+
 
         <Button
             android:id="@+id/btn_delete_module"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
+            android:text="Supprimer"
             android:textColor="@android:color/white"
             android:backgroundTint="#F44336"
             android:layout_marginStart="16dp"
@@ -43,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#4CAF50"
-            android:text="Update" />
+            android:text="Mettre a jour" />
 
 
     </LinearLayout>
