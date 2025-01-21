@@ -67,6 +67,7 @@ public class StudentsFragment extends Fragment {
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         recyclerView.setAdapter(studentAdapter);
 
         btnAddStudent.setOnClickListener(v -> {
